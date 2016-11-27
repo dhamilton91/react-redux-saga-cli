@@ -6,7 +6,7 @@ First, install [Yeoman](http://yeoman.io) and generator-react-redux-saga-generat
 
 ```bash
 npm install -g yo
-npm install -g rakannimer/react-redux-saga-cli
+npm install -g dhamilton91/react-redux-saga-cli
 ```
 
 
