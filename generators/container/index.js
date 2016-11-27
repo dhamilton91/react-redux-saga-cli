@@ -13,40 +13,40 @@ module.exports = yeoman.Base.extend({
       {
         type: 'input',
         name: 'COMPONENT_NAME',
-        message: 'Which component would you like to wrap ?',
+        message: 'Component Name ?',
         default: "DEFAULT_COMPONENT_NAME"
       },
       {
         type: 'input',
-        name: 'ACTION_NAMES',
-        message: 'Which actions would you like to support (space-delimited) ?',
-        default: "DEFAULT_ACTIONS_NAME"
+        name: 'ACTION_NAME',
+        message: 'Action Name ?',
+        default: "DEFAULT_ACTION_NAME"
+      },
+      {
+        type: 'input',
+        name: 'REDUCER_NAME',
+        message: 'Reducer Name ?',
+        default: "DEFAULT_REDUCER_NAME"
       }
     ];
-    if(!this.options.isNested){
+    if (!this.options.isNested) {
       return this.prompt(prompts).then(function (props) {
-        let actions = props.ACTION_NAMES.split(' ');
-        this.props = Object.assign({}, props, {
-          actions
-        });
+        this.props = props;
       }.bind(this));
     }
     else {
-      let actions = this.options.props.ACTION_NAMES.split(' ');
-      this.props = Object.assign({}, this.options.props, {
-        actions
-      });
+      this.props = this.options.props;
     }
   },
 
   writing: function () {
     this.fs.copyTpl(
       this.templatePath('container.template.js'),
-      this.destinationPath(state.CONTAINERS_PATH+this.props.COMPONENT_NAME+'Container.js'),
+      this.destinationPath(state.CONTAINERS_PATH + this.props.COMPONENT_NAME + 'Container.js'),
       this.props
     );
   },
-  end : function () {
+  end: function () {
     this.composeWith('react-redux-saga-cli:containerIndex');
   },
 });

@@ -1,18 +1,11 @@
 import <%=COMPONENT_NAME%> from '../components/<%=COMPONENT_NAME%>';
-import { connect } from 'react-redux';
+import * as actionCreators from '../actions/<%=ACTION_NAME%>';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 
-const mapStateToProps = state => ({ <%=COMPONENT_NAME%>: state.<%=COMPONENT_NAME%> });
+const mapStateToProps = state => ({ <%=REDUCER_NAME%>: state.<%=REDUCER_NAME%> });
 
-const mapDispatchToProps = dispatch => ({
-  onAction: (actionData) => {<% for (var i =0; i < actions.length; i++) { %>
-    dispatch({
-      type: '<%= actions[i]%>',
-      payload: { actionData },
-    });<%  } %>
-  },
-});
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
-const <%=COMPONENT_NAME%>Container = connect(mapStateToProps, mapDispatchToProps)(<%=COMPONENT_NAME%>)
-
-export default <%=COMPONENT_NAME%>Container;
+export default connect(mapStateToProps, mapDispatchToProps)(<%=COMPONENT_NAME%>Container);
