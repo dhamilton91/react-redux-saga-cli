@@ -4,8 +4,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 
-const mapStateToProps = state => ({ <%=REDUCER_NAME%>: state.<%=REDUCER_NAME%> });
+const mapStateToProps = state => ({
+    <%=state%>
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(<%=COMPONENT_NAME%>Container);
+export default connect(mapStateToProps, mapDispatchToProps)(<%=COMPONENT_NAME%>);

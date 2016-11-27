@@ -9,20 +9,20 @@ const mkdirp = require('mkdirp-promise/lib/node4');
 
 module.exports = yeoman.Base.extend({
 
-  initializing: function(){
-    console.log(yosay("Let's bootstrap this app !"));
-  },
+	initializing: function () {
+		console.log(yosay("Let's bootstrap this app !"));
+	},
 
-  writing: function () {
-    mkdirp('./components');
-    mkdirp('./containers');
-    mkdirp('./reducers');
-    mkdirp('./sagas');
-    mkdirp('./middlewares');
-    mkdirp('./store');
-  },
-  end : function () {
-    console.log(yosay("Completed bootstrapping !"));
-  },
+	writing: function () {
+		mkdirp('./components');
+		mkdirp('./containers');
+		mkdirp('./reducers');
+		mkdirp('./sagas');
+		mkdirp('./middlewares');
+		mkdirp('./store');
+	},
+	end: function () {
+		console.log(yosay("Completed bootstrapping !"));
+	},
 
 });

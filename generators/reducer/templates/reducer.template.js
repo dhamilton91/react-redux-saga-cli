@@ -1,14 +1,16 @@
-import update from 'react-addons-update';
+import {
 
-import INITIAL_STATE from '../constants/INITIAL_STATE';
+} from '../constants/ActionTypes';
 
-export default function (state = INITIAL_STATE, action) {
-  switch (action.type) {<% for (var i =0; i < actions.length; i++) { %>
-    case '<%=actions[i]%>':
-      return update(state, {
 
-      });<%  } %>
-    default:
-      return state;
-  }
+export default function (state = {}, action) {
+    switch (action.type) {
+        case '<%=ACTION_NAME%>':
+            return {
+                ...state,
+
+            };
+        default:
+            return state;
+    }
 }
