@@ -9,7 +9,7 @@ var path = require('path');
 module.exports = yeoman.Base.extend({
 
 	prompting: function () {
-		console.log(yosay('Creating Component'));
+		console.log(yosay('Creating React Native Component'));
 		var prompts = [
 			{
 				type: 'input',
@@ -20,7 +20,7 @@ module.exports = yeoman.Base.extend({
 			{
 				type: 'input',
 				name: 'COMPONENT_PATH',
-				message: 'Component path from components folder (e.g. src/components/) ?',
+				message: 'Component path from components folder (src/components/) ?',
 				default: "/"
 			},
 			{
@@ -40,7 +40,7 @@ module.exports = yeoman.Base.extend({
 			{
 				type: 'list',
 				name: 'STYLESHEET',
-				message: 'Include sass sheet ?',
+				message: 'Include stylesheet ?',
 				choices: ['Y', 'N'],
 				default: "N"
 			},
@@ -95,7 +95,7 @@ module.exports = yeoman.Base.extend({
 				options: {
 					isNested: true,
 					props: Object.assign({}, this.props,
-						{STYLESHEET_NAME: 'styles.scss'})
+						{STYLESHEET_NAME: 'stylesheet.js'})
 				}
 			});
 		}

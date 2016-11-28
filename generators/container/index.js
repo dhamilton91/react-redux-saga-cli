@@ -18,6 +18,12 @@ module.exports = yeoman.Base.extend({
 			},
 			{
 				type: 'input',
+				name: 'COMPONENT_PATH',
+				message: 'Component path from components folder (src/components/) ?',
+				default: "/"
+			},
+			{
+				type: 'input',
 				name: 'ACTION_NAME',
 				message: 'Action Name ?',
 				default: "DEFAULT_ACTION_NAME"
@@ -32,11 +38,12 @@ module.exports = yeoman.Base.extend({
 		var newProps = {};
 		if (this.options.isNested) {
 			prompts.shift();
+			prompts.shift();
 			newProps = this.options.props;
 		}
 		return this.prompt(prompts).then(function (props) {
 			this.props = Object.assign({}, props, newProps, {
-				state: 'state.' + props.REDUCER_NAME + ':' + props.REDUCER_NAME
+				state: props.REDUCER_NAME + ': state.' + props.REDUCER_NAME
 			});
 		}.bind(this));
 	},
@@ -50,5 +57,5 @@ module.exports = yeoman.Base.extend({
 	},
 	end: function () {
 		this.composeWith('react-redux-saga-cli:containerIndex');
-	},
+	}
 });

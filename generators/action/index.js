@@ -13,16 +13,30 @@ module.exports = yeoman.Base.extend({
 				name: 'ACTION_NAME',
 				message: 'Action name ?',
 				default: "DEFAULT_ACTION_NAME"
+			},
+			{
+				type: 'input',
+				name: 'ACTION_CONSTANT',
+				message: 'Action constant ?',
+				default: "DEFAULT_ACTION_CONSTANT"
+			},
+			{
+				type: 'input',
+				name: 'REDUCER_NAME',
+				message: 'Reducer name ?',
+				default: "DEFAULT_REDUCER_NAME"
 			}
 		];
+
 		if (!this.options.isNested) {
 			return this.prompt(prompts).then(function (props) {
 				this.props = props;
 			}.bind(this));
 		}
-		else {
+		else{
 			this.props = this.options.props;
 		}
+
 	},
 	writing: function () {
 		this.fs.copyTpl(

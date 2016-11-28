@@ -20,24 +20,34 @@ module.exports = yeoman.Base.extend({
 			},
 			{
 				type: 'input',
-				name: 'ACTION_NAME',
-				message: 'Which action would you like to support ?',
-				default: "DEFAULT_ACTION_NAME"
+				name: 'ACTION_CONSTANT',
+				message: 'Action constant to include ?',
+				default: "DEFAULT_ACTION_CONSTANT"
+			},
+			{
+				type: 'list',
+				name: 'ADD_ACTION',
+				message: 'Create an action ?',
+				choices: ["Y", "N"],
+				default: "N"
 			}
 		];
 
 		if (!this.options.isNested) {
 			return this.prompt(prompts).then(function (props) {
-				this.props = Object.assign({}, props);
+				this.props = props;
 			}.bind(this));
 		}
 		else {
-			this.props = Object.assign({}, this.options.props);
+			this.props = this.options.props;
 		}
 	},
 
 	writing: function () {
-		this.composeWith('react-redux-saga-cli:action', {options: {isNested: true, props: this.props}});
+		if(this.props.ADD_ACTION === "Y") {
+			this.composeWith('react-redux-saga-cli:action', {options: {isNested: true,
+				props: Object.assign({}, this.props, {ACTION_NAME: this.props.REDUCER_NAME})}});
+		}
 		this.fs.copyTpl(
 			this.templatePath('reducer.template.js'),
 			this.destinationPath(state.REDUCERS_PATH + this.props.REDUCER_NAME + '.js'),

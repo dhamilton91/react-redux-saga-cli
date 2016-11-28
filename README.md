@@ -26,6 +26,7 @@ yo react-redux-saga-cli:middleware
 yo react-redux-saga-cli:middlewareIndex
 yo react-redux-saga-cli:reducer
 yo react-redux-saga-cli:reducerIndex
+yo react-redux-saga-cli:rn-component
 yo react-redux-saga-cli:store
 yo react-redux-saga-cli:stylesheet
 yo react-redux-saga-cli:test
