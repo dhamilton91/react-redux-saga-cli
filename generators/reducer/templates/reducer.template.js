@@ -3,7 +3,11 @@ import {
 } from '../constants/ActionTypes';
 
 
-export default function (state = {}, action) {
+const initialState = {
+
+};
+
+export default (state = initialState, action) => {
     switch (action.type) {
 		case '<%=ACTION_CONSTANT%>':
             return {
