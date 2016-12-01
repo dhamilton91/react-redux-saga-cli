@@ -9,7 +9,7 @@ var path = require('path');
 module.exports = yeoman.Base.extend({
 
 	prompting: function () {
-		console.log(yosay('Creating Component'));
+		console.log(yosay('Creating stylesheet'));
 		var prompts = [
 			{
 				type: 'input',

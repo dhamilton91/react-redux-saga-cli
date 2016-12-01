@@ -2,11 +2,11 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-
+var state = require('../initialState');
 
 module.exports = yeoman.Base.extend({
 	prompting: function () {
-		this.log(yosay("Creating reducer"));
+		console.log(yosay('Creating constants'));
 		var prompts = [
 			{
 				type: 'input',
@@ -27,11 +27,11 @@ module.exports = yeoman.Base.extend({
 				this.props = props;
 			}.bind(this));
 		}
-		else {
+		else{
 			this.props = this.options.props;
 		}
-	},
 
+	},
 	writing: function () {
 		if(this.props.DIRECTORY_NAME.indexOf('./') !== 0){
 			this.props.DIRECTORY_NAME = './' + this.props.DIRECTORY_NAME;
@@ -39,9 +39,10 @@ module.exports = yeoman.Base.extend({
 		if(this.props.DIRECTORY_NAME.charAt(this.props.DIRECTORY_NAME.length-1) !== '/'){
 			this.props.DIRECTORY_NAME += '/';
 		}
+		this.props.directory = this.props.DIRECTORY_NAME.substring(2);
 		this.fs.copyTpl(
-			this.templatePath('reducer.template.js'),
-			this.destinationPath(this.props.DIRECTORY_NAME + 'containers/' + this.props.COMPONENT_NAME + '/reducer.js'),
+			this.templatePath('constants.template.js'),
+			this.destinationPath(this.props.DIRECTORY_NAME + 'containers/' + this.props.COMPONENT_NAME+'/constants.js'),
 			this.props
 		);
 	}

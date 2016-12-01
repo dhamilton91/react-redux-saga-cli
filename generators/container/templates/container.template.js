@@ -1,11 +1,11 @@
-import <%=COMPONENT_NAME%> from '../components/<%=COMPONENT_NAME%>';
-import * as actionCreators from '../actions/<%=ACTION_NAME%>';
+import <%=COMPONENT_NAME%> from '../../components/<%=COMPONENT_NAME%>';
+import * as actionCreators from './actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 
 const mapStateToProps = state => ({
-    <%=state%>
+
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);

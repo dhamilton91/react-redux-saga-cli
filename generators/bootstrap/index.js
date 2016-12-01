@@ -16,13 +16,11 @@ module.exports = yeoman.Base.extend({
 	writing: function () {
 		mkdirp('./components');
 		mkdirp('./containers');
-		mkdirp('./reducers');
-		mkdirp('./sagas');
 		mkdirp('./middlewares');
 		mkdirp('./store');
 	},
 	end: function () {
 		console.log(yosay("Completed bootstrapping !"));
-	},
+	}
 
 });

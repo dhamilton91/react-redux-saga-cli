@@ -7,55 +7,74 @@ var state = require('../initialState');
 
 module.exports = yeoman.Base.extend({
 	prompting: function () {
-		this.log(yosay("Creating Container"));
+		this.log(yosay("Creating container"));
 
 		var prompts = [
 			{
 				type: 'input',
+				name: 'DIRECTORY_NAME',
+				message: 'Where does the container directory live ?',
+				default: "./app"
+			},
+			{
+				type: 'input',
 				name: 'COMPONENT_NAME',
-				message: 'Component Name ?',
-				default: "DEFAULT_COMPONENT_NAME"
-			},
-			{
-				type: 'input',
-				name: 'COMPONENT_PATH',
-				message: 'Component path from components folder (src/components/) ?',
-				default: "/"
-			},
-			{
-				type: 'input',
-				name: 'ACTION_NAME',
-				message: 'Action Name ?',
-				default: "DEFAULT_ACTION_NAME"
-			},
-			{
-				type: 'input',
-				name: 'REDUCER_NAME',
-				message: 'Reducer Name ?',
-				default: "DEFAULT_REDUCER_NAME"
+				message: 'What is the component called ?',
+				default: "default"
 			}
 		];
-		var newProps = {};
-		if (this.options.isNested) {
-			prompts.shift();
-			prompts.shift();
-			newProps = this.options.props;
+		if (!this.options.isNested) {
+			return this.prompt(prompts).then(function (props) {
+				this.props = props;
+			}.bind(this));
 		}
-		return this.prompt(prompts).then(function (props) {
-			this.props = Object.assign({}, props, newProps, {
-				state: props.REDUCER_NAME + ': state.' + props.REDUCER_NAME
-			});
-		}.bind(this));
+		else {
+			this.props = this.options.props;
+		}
 	},
 
 	writing: function () {
+		if (this.props.DIRECTORY_NAME.indexOf('./') !== 0) {
+			this.props.DIRECTORY_NAME = './' + this.props.DIRECTORY_NAME;
+		}
+		if (this.props.DIRECTORY_NAME.charAt(this.props.DIRECTORY_NAME.length - 1) !== '/') {
+			this.props.DIRECTORY_NAME += '/';
+		}
 		this.fs.copyTpl(
 			this.templatePath('container.template.js'),
-			this.destinationPath(state.CONTAINERS_PATH + this.props.COMPONENT_NAME + 'Container.js'),
+			this.destinationPath(this.props.DIRECTORY_NAME + 'containers/' + this.props.COMPONENT_NAME + '/index.js'),
 			this.props
 		);
+		this.composeWith('react-redux-saga-cli:actions', {
+			options: {
+				isNested: true,
+				props: this.props
+			}
+		});
+		this.composeWith('react-redux-saga-cli:constants', {
+			options: {
+				isNested: true,
+				props: this.props
+			}
+		});
+		this.composeWith('react-redux-saga-cli:reducer', {
+			options: {
+				isNested: true,
+				props: this.props
+			}
+		});
+		this.composeWith('react-redux-saga-cli:sagas', {
+			options: {
+				isNested: true,
+				props: this.props
+			}
+		});
 	},
 	end: function () {
-		this.composeWith('react-redux-saga-cli:containerIndex');
+		this.composeWith('react-redux-saga-cli:containerIndex', {
+			options: {
+				props: this.props
+			}
+		});
 	}
 });

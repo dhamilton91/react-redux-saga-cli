@@ -2,7 +2,6 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-var state = require('../initialState');
 var fs = require('fs');
 var path = require('path');
 
@@ -13,41 +12,41 @@ module.exports = yeoman.Base.extend({
 		var prompts = [
 			{
 				type: 'input',
-				name: 'COMPONENT_NAME',
-				message: 'Component name ?',
-				default: "DEFAULT_COMPONENT_NAME"
+				name: 'DIRECTORY_NAME',
+				message: 'Where does the components directory live ?',
+				default: "./app"
 			},
 			{
 				type: 'input',
-				name: 'COMPONENT_PATH',
-				message: 'Component path from components folder (src/components/) ?',
-				default: "/"
+				name: 'COMPONENT_NAME',
+				message: 'What should the component be called ?',
+				default: "Default"
 			},
 			{
 				type: 'list',
 				name: 'WITH_CONTAINER',
-				message: 'With container ?',
+				message: 'Do you want to create a container with the component ?',
 				choices: ["Y", "N"],
-				default: "N"
+				default: "Y"
 			},
 			{
 				type: 'list',
-				name: 'PURE_COMPONENT',
-				message: 'Pure component ?',
+				name: 'STATELESS_COMPONENT',
+				message: 'Is the component stateless ?',
 				choices: ["Y", "N"],
 				default: "N"
 			},
 			{
 				type: 'list',
 				name: 'STYLESHEET',
-				message: 'Include stylesheet ?',
+				message: 'Do you want to include a stylesheet ?',
 				choices: ['Y', 'N'],
 				default: "N"
 			},
 			{
 				type: 'list',
 				name: 'FILES_TO_CREATE',
-				message: 'Create a component and index file in new component directory ?',
+				message: 'Do you want to create a component and index file in the new component directory or place all of the logic into an index file ?',
 				choices: ["Component and index.js", "index.js only"],
 				default: "index.js only"
 			}
@@ -58,18 +57,23 @@ module.exports = yeoman.Base.extend({
 	},
 
 	writing: function () {
+		if (this.props.DIRECTORY_NAME.indexOf('./') !== 0) {
+			this.props.DIRECTORY_NAME = './' + this.props.DIRECTORY_NAME;
+		}
+		if (this.props.DIRECTORY_NAME.charAt(this.props.DIRECTORY_NAME.length - 1) !== '/') {
+			this.props.DIRECTORY_NAME += '/';
+		}
 		var destinationPath = '';
 		var templatePath = 'component.template';
-		var componentPath = this.props.COMPONENT_PATH;
-		componentPath = componentPath.charAt(componentPath.length - 1) === '/' ? componentPath : componentPath + '/';
+		var componentPath = this.props.DIRECTORY_NAME + 'components/' + this.props.COMPONENT_NAME;
 		if (this.props.FILES_TO_CREATE === 'index.js only') {
-			destinationPath = state.COMPONENTS_PATH + componentPath + this.props.COMPONENT_NAME + '/index.js';
+			destinationPath = componentPath + '/index.js';
 		}
 		else {
-			destinationPath = state.COMPONENTS_PATH + componentPath + this.props.COMPONENT_NAME + '/' + this.props.COMPONENT_NAME + '.js';
+			destinationPath = componentPath + '/' + this.props.COMPONENT_NAME + '.js';
 		}
-		if (this.props.PURE_COMPONENT === 'Y') {
-			templatePath += '-pure';
+		if (this.props.STATELESS_COMPONENT === 'Y') {
+			templatePath += '-stateless';
 		}
 
 		this.fs.copyTpl(
@@ -77,8 +81,6 @@ module.exports = yeoman.Base.extend({
 			this.destinationPath(destinationPath),
 			this.props
 		);
-	},
-	end: function () {
 		if (this.props.WITH_CONTAINER === 'Y') {
 			this.composeWith('react-redux-saga-cli:container', {
 				options: {
@@ -88,7 +90,12 @@ module.exports = yeoman.Base.extend({
 			});
 		}
 		if (this.props.FILES_TO_CREATE !== 'index.js only') {
-			this.composeWith('react-redux-saga-cli:componentIndex', {options: {props: this.props}});
+			this.composeWith('react-redux-saga-cli:componentIndex', {
+					options: {
+						props: Object.assign({}, this.props, {path: componentPath})
+					}
+				}
+			);
 		}
 		if (this.props.STYLESHEET !== 'N') {
 			this.composeWith('react-redux-saga-cli:stylesheet', {

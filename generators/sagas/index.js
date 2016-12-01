@@ -3,10 +3,9 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
-
 module.exports = yeoman.Base.extend({
 	prompting: function () {
-		this.log(yosay("Creating reducer"));
+		this.log(yosay("Creating Saga"));
 		var prompts = [
 			{
 				type: 'input',
@@ -21,7 +20,6 @@ module.exports = yeoman.Base.extend({
 				default: "default"
 			}
 		];
-
 		if (!this.options.isNested) {
 			return this.prompt(prompts).then(function (props) {
 				this.props = props;
@@ -40,8 +38,8 @@ module.exports = yeoman.Base.extend({
 			this.props.DIRECTORY_NAME += '/';
 		}
 		this.fs.copyTpl(
-			this.templatePath('reducer.template.js'),
-			this.destinationPath(this.props.DIRECTORY_NAME + 'containers/' + this.props.COMPONENT_NAME + '/reducer.js'),
+			this.templatePath('sagas.template.js'),
+			this.destinationPath(this.props.DIRECTORY_NAME + 'containers/' + this.props.COMPONENT_NAME+'/sagas.js'),
 			this.props
 		);
 	}

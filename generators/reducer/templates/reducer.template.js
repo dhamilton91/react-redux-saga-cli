@@ -1,6 +1,6 @@
 import {
-	<%=ACTION_CONSTANT%>
-} from '../constants/ActionTypes';
+
+} from './constants';
 
 
 const initialState = {
@@ -9,10 +9,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-		case '<%=ACTION_CONSTANT%>':
+		case :
             return {
                 ...state,
-				...action.<%=REDUCER_NAME%>
+
             };
         default:
             return state;

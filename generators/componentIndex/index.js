@@ -13,10 +13,11 @@ module.exports = yeoman.Base.extend({
 
 	writing: function () {
 		var component = this.options.props.COMPONENT_NAME;
+		var path = this.options.props.path;
 		this.fs.copyTpl(
 			this.templatePath('index.template.js'),
-			this.destinationPath(state.COMPONENTS_PATH + '/' + this.options.props.COMPONENT_NAME + '/index.js'),
-			{component}
+			this.destinationPath(path + '/index.js'),
+			{component: component}
 		);
 	}
 });
