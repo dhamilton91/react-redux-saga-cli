@@ -18,7 +18,7 @@ module.exports = yeoman.Base.extend({
 				type: 'input',
 				name: 'MIDDLEWARE_NAME',
 				message: 'Middleware name?',
-				default: "DEFAULT_MIDDLEWARE_NAME"
+				default: "Default"
 			}
 		];
 
@@ -40,7 +40,7 @@ module.exports = yeoman.Base.extend({
 			this.props
 		);
 	},
-	end: function () {
+	end: function() {
 		this.composeWith('react-redux-saga-cli:middlewareIndex', {
 			options: {
 				props: this.props

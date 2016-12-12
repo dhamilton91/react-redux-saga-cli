@@ -16,8 +16,7 @@ module.exports = yeoman.Base.extend({
 	writing: function () {
 		mkdirp('./components');
 		mkdirp('./containers');
-		mkdirp('./middlewares');
-		mkdirp('./store');
+		mkdirp('./middleware');
 	},
 	end: function () {
 		console.log(yosay("Completed bootstrapping !"));

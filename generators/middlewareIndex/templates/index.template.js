@@ -1,6 +1,6 @@
-<% for (var i = 0; i < components.length; i++) { %>import <%= components[i].split('.')[0] %> from './<%=components[i].split('.')[0]%>';
+<% for (var i = 0; i < middleware.length; i++) { %>import <%= middleware[i].split('.')[0] %> from './<%=middleware[i].split('.')[0]%>';
 <% } %>
 
 export {
-  <% for (var i = 0; i < components.length; i++) { %> <%= components[i].split('.')[0] %>,<% } %>
+  <% for (var i = 0; i < middleware.length; i++) { %> <%= middleware[i].split('.')[0] %>,<% } %>
 };

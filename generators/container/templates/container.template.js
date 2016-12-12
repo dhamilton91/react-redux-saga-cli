@@ -8,6 +8,8 @@ const mapStateToProps = state => ({
 
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
+const mapDispatchToProps = dispatch => ({
+	actions: bindActionCreators(actionCreators, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(<%=COMPONENT_NAME%>);

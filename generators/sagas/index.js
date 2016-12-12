@@ -42,5 +42,12 @@ module.exports = yeoman.Base.extend({
 			this.destinationPath(this.props.DIRECTORY_NAME + 'containers/' + this.props.COMPONENT_NAME+'/sagas.js'),
 			this.props
 		);
+	},
+	end: function() {
+		this.composeWith('react-redux-saga-cli:sagasIndex', {
+			options: {
+				props: this.props
+			}
+		});
 	}
 });

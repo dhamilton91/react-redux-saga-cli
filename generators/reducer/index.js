@@ -44,5 +44,12 @@ module.exports = yeoman.Base.extend({
 			this.destinationPath(this.props.DIRECTORY_NAME + 'containers/' + this.props.COMPONENT_NAME + '/reducer.js'),
 			this.props
 		);
+	},
+	end: function() {
+		this.composeWith('react-redux-saga-cli:reducerIndex', {
+			options: {
+				props: this.props
+			}
+		});
 	}
 });

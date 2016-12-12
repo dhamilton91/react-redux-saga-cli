@@ -2,7 +2,6 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-var state = require('../initialState');
 
 module.exports = yeoman.Base.extend({
 	prompting: function () {

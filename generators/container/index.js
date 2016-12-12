@@ -2,7 +2,6 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-var state = require('../initialState');
 
 
 module.exports = yeoman.Base.extend({
@@ -20,7 +19,7 @@ module.exports = yeoman.Base.extend({
 				type: 'input',
 				name: 'COMPONENT_NAME',
 				message: 'What is the component called ?',
-				default: "default"
+				default: "Default"
 			}
 		];
 		if (!this.options.isNested) {
