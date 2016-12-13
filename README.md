@@ -1,12 +1,21 @@
 # generator-react-redux-saga-generator
 
-This Yeoman generator creates the following folder structure:
+This Yeoman generator creates and uses the following folder structure:
 
 ```
 - app/
 	- components/
+		- index.js
+		- styles.scss (or stylesheet.js - react native)
 	- containers/
+		- actions.js
+		- constants.js
+		- index.js
+		- reducer.js
+		- sagas.js
 	- middleware/
+		- ...
+		- index.js
 	- configureStore.js
 	- rootReducer.js
 	- rootSaga.js
