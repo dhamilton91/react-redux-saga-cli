@@ -53,7 +53,7 @@ For simplicity, I recommend adding the following scripts or similar to your pack
 ```
 "scripts": {
 	...
-	"yo-component": "yo react-redux-saga-cli:component", //"yo react-redux-saga-cli:component" for React-Native
+	"yo-component": "yo react-redux-saga-cli:component", //"yo react-redux-saga-cli:-component-react-native" for React-Native
 	"yo-container": "yo react-redux-saga-cli:container",
 	"yo-middleware": "yo react-redux-saga-cli:middleware",
 	"yo-store": "yo react-redux-saga-cli:store"
