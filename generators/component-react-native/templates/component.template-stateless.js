@@ -6,7 +6,7 @@ import {
 <%if (STYLESHEET === 'Y') { -%>import styles from './stylesheet';<% } -%>
 
 
-function <%=COMPONENT_NAME%> ({}) => {
+function <%=COMPONENT_NAME%> ({}) {
     return (
         <View></View>
     );
