@@ -62,12 +62,12 @@ module.exports = yeoman.Base.extend({
 				props: this.props
 			}
 		});
-		this.composeWith('react-redux-saga-cli:sagas', {
-			options: {
-				isNested: true,
-				props: this.props
-			}
-		});
+		// this.composeWith('react-redux-saga-cli:sagas', {
+		// 	options: {
+		// 		isNested: true,
+		// 		props: this.props
+		// 	}
+		// });
 	},
 	end: function () {
 		this.composeWith('react-redux-saga-cli:containerIndex', {

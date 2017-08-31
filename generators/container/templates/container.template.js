@@ -1,7 +1,7 @@
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import <%=COMPONENT_NAME%> from '../../components/<%=COMPONENT_NAME%>';
 import * as actionCreators from './actions';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 
 const mapStateToProps = state => ({

@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
 } from 'react-native';
 <%if (STYLESHEET === 'Y') { -%>import styles from './stylesheet';<% } -%>
 
 
-export default class <%=COMPONENT_NAME%> extends Component {
+class <%=COMPONENT_NAME%> extends Component {
 
     render(){
         return (
@@ -14,3 +15,9 @@ export default class <%=COMPONENT_NAME%> extends Component {
     }
 
 }
+
+<%=COMPONENT_NAME%>.propTypes = {
+
+};
+
+export default <%=COMPONENT_NAME%>;

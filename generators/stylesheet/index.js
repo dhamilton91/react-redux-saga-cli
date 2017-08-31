@@ -26,8 +26,8 @@ module.exports = yeoman.Base.extend({
 				type: 'list',
 				name: 'STYLESHEET_NAME',
 				message: 'Which stylesheet ?',
-				choices: ["styles.scss", 'stylesheet.js'],
-				default: "styles.scss"
+				choices: ["styles.css", 'stylesheet.js'],
+				default: "styles.css"
 			}
 		];
 		if (!this.options.isNested) {

@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
-<%if (STYLESHEET === 'Y') { -%>import styles from './styles.scss';<% } -%>
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+<%if (STYLESHEET === 'Y') { -%>import styles from './styles.css';<% } -%>
 
 
-export default class <%=COMPONENT_NAME%> extends Component {
+class <%=COMPONENT_NAME%> extends Component {
 
     render(){
         return (
@@ -11,3 +12,9 @@ export default class <%=COMPONENT_NAME%> extends Component {
     }
 
 }
+
+<%=COMPONENT_NAME%>.propTypes = {
+
+};
+
+export default <%=COMPONENT_NAME%>;

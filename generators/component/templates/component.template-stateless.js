@@ -1,9 +1,16 @@
 import React from 'react';
-<%if (STYLESHEET === 'Y') { -%>import styles from './styles.scss';<% } -%>
+import PropTypes from 'prop-types';
+<%if (STYLESHEET === 'Y') { -%>import styles from './styles.css';<% } -%>
 
 
-export default ({}) => {
+function <%=COMPONENT_NAME%> ({}) => {
     return (
         <div></div>
     );
 }
+
+<%=COMPONENT_NAME%>.propTypes = {
+
+};
+
+export default <%=COMPONENT_NAME%>;

@@ -39,7 +39,7 @@ module.exports = yeoman.Base.extend({
 			{
 				type: 'list',
 				name: 'STYLESHEET',
-				message: 'Do you want to include a sass stylesheet ?',
+				message: 'Do you want to include a css stylesheet ?',
 				choices: ['Y', 'N'],
 				default: "N"
 			},
