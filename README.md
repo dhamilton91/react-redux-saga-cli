@@ -1,12 +1,21 @@
 # generator-react-redux-saga-generator
 
-This Yeoman generator creates the following folder structure:
+This Yeoman generator creates and uses the following folder structure:
 
 ```
 - app/
 	- components/
+		- index.js
+		- styles.scss (or stylesheet.js - react native)
 	- containers/
+		- actions.js
+		- constants.js
+		- index.js
+		- reducer.js
+		- sagas.js
 	- middleware/
+		- ...
+		- index.js
 	- configureStore.js
 	- rootReducer.js
 	- rootSaga.js
@@ -44,7 +53,7 @@ For simplicity, I recommend adding the following scripts or similar to your pack
 ```
 "scripts": {
 	...
-	"yo-component": "yo react-redux-saga-cli:component", //"yo react-redux-saga-cli:component" for React-Native
+	"yo-component": "yo react-redux-saga-cli:component", //"yo react-redux-saga-cli:-component-react-native" for React-Native
 	"yo-container": "yo react-redux-saga-cli:container",
 	"yo-middleware": "yo react-redux-saga-cli:middleware",
 	"yo-store": "yo react-redux-saga-cli:store"

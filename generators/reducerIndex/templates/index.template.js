@@ -6,4 +6,4 @@ import {combineReducers} from 'redux';
 export default combineReducers({
 <% for (var i = 0; i < reducers.length; i++) { %>    <%= reducers[i].split('.')[0] %>,
 <% } -%>
-};
+});
