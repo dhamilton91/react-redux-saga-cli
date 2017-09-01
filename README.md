@@ -6,7 +6,7 @@ This Yeoman generator creates and uses the following folder structure:
 - app/
 	- components/
 		- index.js
-		- styles.scss (or stylesheet.js - react native)
+		- styles.css (or stylesheet.js - react native)
 	- containers/
 		- actions.js
 		- constants.js
