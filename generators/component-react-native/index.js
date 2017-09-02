@@ -67,10 +67,10 @@ module.exports = yeoman.Base.extend({
 		var templatePath = 'component.template';
 		var componentPath = this.props.DIRECTORY_NAME + 'components/' + this.props.COMPONENT_NAME;
 		if (this.props.FILES_TO_CREATE === 'index.js only') {
-			destinationPath = componentPath + '/index.js';
+			destinationPath = componentPath + '/index.jsx';
 		}
 		else {
-			destinationPath = componentPath + '/' + this.props.COMPONENT_NAME + '.js';
+			destinationPath = componentPath + '/' + this.props.COMPONENT_NAME + '.jsx';
 		}
 		if (this.props.STATELESS_COMPONENT === 'Y') {
 			templatePath += '-stateless';
