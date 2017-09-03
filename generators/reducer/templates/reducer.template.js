@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
 		case :
             return {
                 ...state,
-
+				...action.payload,
             };
         default:
             return state;
